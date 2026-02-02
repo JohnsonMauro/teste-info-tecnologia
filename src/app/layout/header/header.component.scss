@@ -1,0 +1,27 @@
+.app-toolbar {
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5625rem;
+  font-weight: 500;
+
+  mat-icon {
+    font-size: 1.5625rem;
+    width: 1.5625rem;
+    height: 1.5625rem;
+  }
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 600px) {
+  .logo span {
+    display: none;
+  }
+}

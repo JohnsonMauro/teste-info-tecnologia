@@ -1,0 +1,52 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>{{ dialogTitle }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Marca</mat-label>
+          <input matInput formControlName="marca" placeholder="Ex: Toyota" autocomplete="off" />
+          <mat-error>{{ getErrorMessage('marca') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Modelo</mat-label>
+          <input matInput formControlName="modelo" placeholder="Ex: Corolla" autocomplete="off" />
+          <mat-error>{{ getErrorMessage('modelo') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Ano</mat-label>
+          <input matInput type="number" formControlName="ano" placeholder="Ex: 2024" />
+          <mat-error>{{ getErrorMessage('ano') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Placa</mat-label>
+          <input
+            matInput
+            formControlName="placa"
+            placeholder="Ex: ABC-1234"
+            autocomplete="off"
+            style="text-transform: uppercase"
+          />
+          <mat-error>{{ getErrorMessage('placa') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Cor</mat-label>
+          <input matInput formControlName="cor" placeholder="Ex: Prata" autocomplete="off" />
+          <mat-error>{{ getErrorMessage('cor') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+      <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ isEditMode ? 'Salvar' : 'Criar' }}
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

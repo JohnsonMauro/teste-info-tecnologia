@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .dialog-container {
+    min-width: auto;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
