@@ -1,6 +1,6 @@
 # Sistema de Veículos
 
-Sistema de gerenciamento de veículos desenvolvido com Angular 20 e Angular Material 20.
+Sistema de gerenciamento de veículos.
 
 ## 📋 Sobre o Projeto
 
@@ -57,7 +57,7 @@ src/app/
 
 ### Pré-requisitos
 
-- Node.js 24+
+- Node.js 20+
 - npm ou yarn
 
 ### Instalação
