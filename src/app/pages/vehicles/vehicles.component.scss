@@ -56,6 +56,12 @@ td.mat-cell {
   font-style: italic;
 }
 
+@media (max-width: 768px) {
+  .mat-column-cor {
+    display: none;
+  }
+}
+
 @media (max-width: 600px) {
   .page-header {
     flex-direction: column;
@@ -69,5 +75,14 @@ td.mat-cell {
 
   .page-header button {
     justify-content: center;
+  }
+
+  .mat-column-ano,
+  .mat-column-placa {
+    display: none;
+  }
+
+  td.mat-cell {
+    padding: 8px 12px;
   }
 }

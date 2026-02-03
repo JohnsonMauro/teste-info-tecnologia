@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,5 +11,10 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './aside.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AsideComponent {}
+export class AsideComponent {
+  readonly navigationClick = output<void>();
 
+  onNavigate(): void {
+    this.navigationClick.emit();
+  }
+}

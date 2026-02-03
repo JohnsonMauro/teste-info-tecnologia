@@ -4,8 +4,43 @@
   height: 100vh;
 }
 
-.layout-body {
-  display: flex;
+.sidenav-container {
   flex: 1;
   overflow: hidden;
+}
+
+mat-sidenav {
+  width: 240px;
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.toggle-sidenav-button {
+  position: absolute;
+  bottom: 80px;
+  left: 16px;
+  z-index: 100;
+  background-color: #ffffff;
+  color: #616161;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 280px;
+  }
+}
+
+@media (max-width: 680px) {
+  .toggle-sidenav-button {
+    display: none;
+  }
 }

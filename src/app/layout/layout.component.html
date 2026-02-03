@@ -1,10 +1,29 @@
 <div class="layout-container">
   <app-header />
 
-  <div class="layout-body">
-    <app-aside />
-    <app-main />
-  </div>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #sidenav
+      [mode]="isSmallScreen() ? 'over' : 'side'"
+      [opened]="sidenavOpened()"
+      (openedChange)="sidenavOpened.set($event)"
+      [fixedInViewport]="isSmallScreen()"
+      fixedTopGap="64"
+    >
+      <app-aside (navigationClick)="closeSidenavOnMobile()" />
+    </mat-sidenav>
 
-  <app-footer />
+    <mat-sidenav-content>
+      <button
+        mat-mini-fab
+        class="toggle-sidenav-button"
+        (click)="toggleSidenav()"
+        aria-label="Alternar menu"
+      >
+        <mat-icon>{{ sidenavOpened() ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+      </button>
+      <app-main />
+      <app-footer />
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
