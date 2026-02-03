@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { Vehicle, VehicleCreate } from '../../models/index';
+import { PlateMaskDirective } from '@directives/index';
 
 export interface VehicleFormData {
   vehicle: Vehicle | null;
@@ -20,6 +21,7 @@ export interface VehicleFormData {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    PlateMaskDirective,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
@@ -42,7 +44,7 @@ export class VehicleFormComponent {
     ],
     placa: [
       this.data.vehicle?.placa ?? '',
-      [Validators.required, Validators.pattern(/^[A-Z]{3}-?\d{4}$|^[A-Z]{3}\d[A-Z]\d{2}$/)],
+      [Validators.required, Validators.pattern(/^[A-Z]{3}-\d{4}$|^[A-Z]{3}-\d[A-Z]\d{2}$/)],
     ],
     cor: [this.data.vehicle?.cor ?? '', [Validators.required, Validators.minLength(2)]],
   });
@@ -75,8 +77,13 @@ export class VehicleFormComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const formValue = this.form.getRawValue() as VehicleCreate;
-      this.dialogRef.close(formValue);
+      const formValue = this.form.getRawValue();
+      // Normaliza a placa para maiúsculas (já deve estar, mas garante)
+      const normalizedValue: VehicleCreate = {
+        ...formValue,
+        placa: formValue.placa.toUpperCase(),
+      };
+      this.dialogRef.close(normalizedValue);
     } else {
       this.form.markAllAsTouched();
     }

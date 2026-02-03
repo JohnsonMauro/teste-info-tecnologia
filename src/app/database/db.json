@@ -23,6 +23,14 @@
       "ano": 2024,
       "placa": "GHI-9012",
       "cor": "Branco"
+    },
+    {
+      "id": "c9a4",
+      "marca": "Audi",
+      "modelo": "ght",
+      "ano": 2026,
+      "placa": "ABN-1D34",
+      "cor": "bege"
     }
   ]
 }

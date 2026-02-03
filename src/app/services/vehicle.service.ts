@@ -2,7 +2,6 @@ import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Vehicle, VehicleCreate, VehicleUpdate } from '../pages/vehicles/models';
-
 import { API_CONFIG, ApiConfig } from '@app/core/config/index';
 
 @Injectable({

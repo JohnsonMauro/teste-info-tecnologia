@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, computed, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +20,7 @@ import { ConfirmDialogComponent } from '@components/confirm-dialog/confirm-dialo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehiclesComponent {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly vehicleService = inject(VehicleService);
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
@@ -39,13 +41,19 @@ export class VehiclesComponent {
       data: { vehicle: null },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.vehicleService.create(result).subscribe(() => {
-          this.showSnackBar('Veículo criado com sucesso!');
-        });
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        if (result) {
+          this.vehicleService
+            .create(result)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe(() => {
+              this.showSnackBar('Veículo criado com sucesso!');
+            });
+        }
+      });
   }
 
   openEditDialog(vehicle: Vehicle): void {
@@ -55,13 +63,19 @@ export class VehiclesComponent {
       data: { vehicle },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.vehicleService.update(vehicle.id, result).subscribe(() => {
-          this.showSnackBar('Veículo atualizado com sucesso!');
-        });
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        if (result) {
+          this.vehicleService
+            .update(vehicle.id, result)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe(() => {
+              this.showSnackBar('Veículo atualizado com sucesso!');
+            });
+        }
+      });
   }
 
   deleteVehicle(vehicle: Vehicle): void {
@@ -76,13 +90,19 @@ export class VehiclesComponent {
       },
     });
 
-    dialogRef.afterClosed().subscribe((confirmed) => {
-      if (confirmed) {
-        this.vehicleService.delete(vehicle.id).subscribe(() => {
-          this.showSnackBar('Veículo excluído com sucesso!');
-        });
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((confirmed) => {
+        if (confirmed) {
+          this.vehicleService
+            .delete(vehicle.id)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe(() => {
+              this.showSnackBar('Veículo excluído com sucesso!');
+            });
+        }
+      });
   }
 
   private showSnackBar(message: string): void {

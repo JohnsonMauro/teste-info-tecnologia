@@ -1,5 +1,7 @@
 .app-toolbar {
   z-index: 1000;
+  background-color: #424242;
+  color: #ffffff;
 }
 
 .logo {
@@ -8,11 +10,13 @@
   gap: 10px;
   font-size: 1.5625rem;
   font-weight: 500;
+  color: #ffffff;
 
   mat-icon {
     font-size: 1.5625rem;
     width: 1.5625rem;
     height: 1.5625rem;
+    color: #ffffff;
   }
 }
 

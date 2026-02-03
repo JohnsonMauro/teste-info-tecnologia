@@ -29,7 +29,8 @@
             formControlName="placa"
             placeholder="Ex: ABC-1234"
             autocomplete="off"
-            style="text-transform: uppercase"
+            maxlength="8"
+            appPlateMask
           />
           <mat-error>{{ getErrorMessage('placa') }}</mat-error>
         </mat-form-field>

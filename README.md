@@ -13,6 +13,7 @@ Aplicação CRUD completa para gerenciamento de veículos, permitindo cadastrar,
 - **TypeScript 5.8** - Linguagem de programação
 - **SCSS** - Pré-processador CSS
 - **RxJS** - Programação reativa
+- **JSON Server** - API REST fake para desenvolvimento
 
 ## ✨ Funcionalidades
 
@@ -63,14 +64,31 @@ src/app/
 ### Instalação
 
 ```bash
-# Instalar dependências
 npm install
+```
 
-# Iniciar servidor de desenvolvimento
+### Executando a aplicação
+
+A aplicação utiliza JSON Server como API REST fake para persistência de dados.
+
+```bash
+# Terminal 1 - Iniciar o JSON Server (API)
+npm run server
+
+# Terminal 2 - Iniciar o Angular (Frontend)
 npm start
 ```
 
-Acesse `http://localhost:4200/` no navegador.
+Ou execute ambos simultaneamente:
+
+```bash
+npm run dev
+```
+
+| Serviço          | URL                    |
+| ---------------- | ---------------------- |
+| Frontend Angular | http://localhost:4200/ |
+| API JSON Server  | http://localhost:3000/ |
 
 ### Build
 
