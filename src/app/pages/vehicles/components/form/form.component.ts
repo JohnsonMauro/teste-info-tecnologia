@@ -4,14 +4,15 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { Vehicle, VehicleCreate } from '@models/index';
 
-export interface VehicleDialogData {
+import { Vehicle, VehicleCreate } from '../../models/index';
+
+export interface VehicleFormData {
   vehicle: Vehicle | null;
 }
 
 @Component({
-  selector: 'app-vehicle-dialog',
+  selector: 'app-vehicle-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -20,14 +21,14 @@ export interface VehicleDialogData {
     MatInputModule,
     MatButtonModule,
   ],
-  templateUrl: './vehicle-dialog.component.html',
-  styleUrl: './vehicle-dialog.component.scss',
+  templateUrl: './form.component.html',
+  styleUrl: './form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VehicleDialogComponent {
+export class VehicleFormComponent {
   private readonly fb = inject(FormBuilder);
-  private readonly dialogRef = inject(MatDialogRef<VehicleDialogComponent>);
-  private readonly data = inject<VehicleDialogData>(MAT_DIALOG_DATA);
+  private readonly dialogRef = inject(MatDialogRef<VehicleFormComponent>);
+  private readonly data = inject<VehicleFormData>(MAT_DIALOG_DATA);
 
   readonly isEditMode = !!this.data.vehicle;
   readonly dialogTitle = this.isEditMode ? 'Editar Veículo' : 'Novo Veículo';
@@ -45,19 +46,6 @@ export class VehicleDialogComponent {
     ],
     cor: [this.data.vehicle?.cor ?? '', [Validators.required, Validators.minLength(2)]],
   });
-
-  onSubmit(): void {
-    if (this.form.valid) {
-      const formValue = this.form.getRawValue() as VehicleCreate;
-      this.dialogRef.close(formValue);
-    } else {
-      this.form.markAllAsTouched();
-    }
-  }
-
-  onCancel(): void {
-    this.dialogRef.close(null);
-  }
 
   getErrorMessage(field: 'marca' | 'modelo' | 'ano' | 'placa' | 'cor'): string {
     const control = this.form.get(field);
@@ -83,5 +71,18 @@ export class VehicleDialogComponent {
     }
 
     return '';
+  }
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      const formValue = this.form.getRawValue() as VehicleCreate;
+      this.dialogRef.close(formValue);
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+
+  onCancel(): void {
+    this.dialogRef.close(null);
   }
 }

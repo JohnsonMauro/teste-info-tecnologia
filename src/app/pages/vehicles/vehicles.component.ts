@@ -6,8 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { VehicleService } from '@services/index';
-import { Vehicle } from '@models/index';
-import { VehicleDialogComponent } from './components/vehicle-dialog/vehicle-dialog.component';
+import { Vehicle } from '@app/pages/vehicles/models/index';
+import { VehicleFormComponent } from './components/form/form.component';
 import { ConfirmDialogComponent } from '@components/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -33,7 +33,7 @@ export class VehiclesComponent {
   }
 
   openCreateDialog(): void {
-    const dialogRef = this.dialog.open(VehicleDialogComponent, {
+    const dialogRef = this.dialog.open(VehicleFormComponent, {
       width: '600px',
       autoFocus: 'dialog',
       data: { vehicle: null },
@@ -41,14 +41,15 @@ export class VehiclesComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.vehicleService.create(result);
-        this.showSnackBar('Veículo criado com sucesso!');
+        this.vehicleService.create(result).subscribe(() => {
+          this.showSnackBar('Veículo criado com sucesso!');
+        });
       }
     });
   }
 
   openEditDialog(vehicle: Vehicle): void {
-    const dialogRef = this.dialog.open(VehicleDialogComponent, {
+    const dialogRef = this.dialog.open(VehicleFormComponent, {
       width: '600px',
       autoFocus: 'dialog',
       data: { vehicle },
@@ -56,8 +57,9 @@ export class VehiclesComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.vehicleService.update(vehicle.id, result);
-        this.showSnackBar('Veículo atualizado com sucesso!');
+        this.vehicleService.update(vehicle.id, result).subscribe(() => {
+          this.showSnackBar('Veículo atualizado com sucesso!');
+        });
       }
     });
   }
@@ -76,8 +78,9 @@ export class VehiclesComponent {
 
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
-        this.vehicleService.delete(vehicle.id);
-        this.showSnackBar('Veículo excluído com sucesso!');
+        this.vehicleService.delete(vehicle.id).subscribe(() => {
+          this.showSnackBar('Veículo excluído com sucesso!');
+        });
       }
     });
   }

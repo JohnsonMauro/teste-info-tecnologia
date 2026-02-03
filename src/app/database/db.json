@@ -1,0 +1,28 @@
+{
+  "vehicles": [
+    {
+      "id": "1",
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "ano": 2025,
+      "placa": "ABC-1233",
+      "cor": "Prata"
+    },
+    {
+      "id": "2",
+      "marca": "Honda",
+      "modelo": "Civic",
+      "ano": 2022,
+      "placa": "DEF-5678",
+      "cor": "Preto"
+    },
+    {
+      "id": "3",
+      "marca": "Volkswagen",
+      "modelo": "Golf",
+      "ano": 2024,
+      "placa": "GHI-9012",
+      "cor": "Branco"
+    }
+  ]
+}
