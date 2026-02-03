@@ -64,7 +64,7 @@ src/app/
 
 ### Pré-requisitos
 
-- Node.js 20+
+- Node.js 22+
 - npm ou yarn
 
 ### Instalação
