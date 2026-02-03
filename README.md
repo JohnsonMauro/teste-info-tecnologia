@@ -39,19 +39,25 @@ Aplicação CRUD completa para gerenciamento de veículos, permitindo cadastrar,
 
 ```
 src/app/
-├── components/          # Componentes compartilhados
+├── components/           # Componentes compartilhados
 │   └── confirm-dialog/
-├── layout/              # Componentes de layout
-│   ├── header/
+├── core/                 # Configurações e utilitários
+│   ├── config/           # Tokens de injeção e configurações
+│   └── directives/       # Diretivas reutilizáveis
+├── database/             # Banco de dados JSON Server
+│   └── db.json
+├── layout/               # Componentes de layout
 │   ├── aside/
-│   ├── main/
-│   └── footer/
-├── models/              # Interfaces e tipos
-├── pages/               # Páginas da aplicação
+│   ├── footer/
+│   ├── header/
+│   └── main/
+├── pages/                # Páginas da aplicação
 │   ├── dashboard/
+│   ├── not-found/
 │   └── vehicles/
-│       └── components/  # Componentes específicos da feature
-└── services/            # Serviços da aplicação
+│       ├── components/   # Componentes específicos da feature
+│       └── models/       # Interfaces e tipos da feature
+└── services/             # Serviços da aplicação
 ```
 
 ## 🛠️ Como Executar
